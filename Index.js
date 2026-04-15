@@ -6,7 +6,9 @@ const readline = require('readline')
 
     
 // vamos fazer aqui um sistema de lembretes, onde o usuário pode criar, editar e excluir lembretes.
-// Listar lembretes
+
+
+// Listar lembretes por Dion
 
 function listar() {
   if (lembretes.length === 0) {
@@ -17,3 +19,20 @@ function listar() {
     });
   }
 }
+
+
+// Excluir lembrete por Dion
+
+function excluir() {
+    listar();
+    rl.question("Digite o índice do lembrete que deseja excluir: ", (indice) => {
+      if (lembretes[indice]) {
+        lembretes.splice(indice, 1);
+        console.log("Lembrete excluído com sucesso!");
+        executar();
+      } else {
+        console.log("Índice inválido.");
+        executar();
+      }
+    });
+  }
