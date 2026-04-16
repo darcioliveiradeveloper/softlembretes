@@ -56,10 +56,12 @@ function exibirMenu() {
 
 function listar() {
   if (lembretes.length === 0) {
-    console.log("Nenhum lembrete cadastrado.");
+    console.log("Nenhum lembrete cadastrado."); exibirMenu();
+
   } else {
     lembretes.forEach((l, i) => {
       console.log(`${i} - ${l.lembrete} | Prazo: ${l.prazo} | Concluído: ${l.concluido}`);
+        exibirMenu();
     });
   }
 }
@@ -85,24 +87,29 @@ function excluir() {
 // Adicionar Lembrete por Lucas
 
 function Adicionar () {
-    const dados = []
+  
 rl.question("Digite seu lembrete: ", (input1) => {
         rl.question("Digite seu prazo: ", (input2) => {
         const tempo = (input2)
-             rl.question("Digite a situação da tarefa: ", (input3) => {
-             const conclusao = (input3)
+             
             
-                const lembrete1 = {
+                const lembrete = {
                     lembrete: input1,
-                    resultado: conclusao,
+                    concluido: false,
                     prazo: tempo,
                 }
-                dados.push(lembrete1)
-                console.log(dados)
-                  rl.close()
+                lembretes.push(lembrete)
+                console.log("Lembrete adicionado com sucesso!")
+                  
+                rl.question("Deseja adicionar outro lembrete? (s/n): ", (resposta) => {
+                if (resposta === "s") {
+                    Adicionar();
+                } else {
+                    exibirMenu();
+                }
              })  
         })
             })}
 
-
+        
 exibirMenu();
