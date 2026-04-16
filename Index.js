@@ -1,8 +1,56 @@
-const readline = require('readline')
-
-    
 // vamos fazer aqui um sistema de lembretes, onde o usuário pode criar, editar e excluir lembretes.
+// Por Darci, Dion, Lucas
 
+// Vetor global de lembretes
+let lembretes = [];
+
+const readline = require("readline");
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// Criar menus de entrada por Darci
+
+function exibirMenu() {
+    console.log(`
+      ---------- MENU ----------
+      1. Adicionar Lembrete
+      2. Lista Lembretes
+      3. Editar Lembrete
+      4. Excluir Lembrete
+      5. Sair
+      `);
+    pergunta();
+  }
+
+  function pergunta() {
+    rl.question("Escolha uma opção: ", (opcao) => {
+      switch (opcao) {
+        case "1":
+          Adicionar();
+          break;
+        case "2":
+          listar();
+          break;
+        case "3":
+          editar();
+          break;
+        case "4":
+          excluir();
+          break;
+        case "5":
+          console.log("Saindo...!");
+          rl.close();
+          break;
+        default:
+          console.log("Opção inválida!");
+          exibirMenu();
+          break;
+      }
+    });
+  }
 
 // Listar lembretes por Dion
 
@@ -32,27 +80,29 @@ function excluir() {
       }
     });
   }
-const rl = readline.createInterface({
-    input: process.stdin,
-    output : process.stdout
-})
 
 
-const dados =[]
+// Adicionar Lembrete por Lucas
+
+function Adicionar () {
+    const dados = []
 rl.question("Digite seu lembrete: ", (input1) => {
         rl.question("Digite seu prazo: ", (input2) => {
         const tempo = (input2)
              rl.question("Digite a situação da tarefa: ", (input3) => {
              const conclusao = (input3)
             
-                const produto1 = {
+                const lembrete1 = {
                     lembrete: input1,
                     resultado: conclusao,
                     prazo: tempo,
                 }
-                dados.push(produto1)
+                dados.push(lembrete1)
                 console.log(dados)
                   rl.close()
              })  
         })
-            })
+            })}
+
+
+exibirMenu();
